@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-like Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #4267B2;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .header .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        .header .search-bar input {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .header .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .header .menu a {
+            color: white;
+            text-decoration: none;
+        }
+        .registration-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin: 50px auto;
+        }
+        .registration-container h2 {
+            color: #4267B2;
+            margin-bottom: 20px;
+        }
+        .registration-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .registration-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .registration-container button:hover {
+            background-color: #365899;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Facebook</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Facebook">
+        </div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Messages</a>
+        </div>
+    </div>
+    <div class="registration-container">
+        <h2>Create a New Account</h2>
+        <form>
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+            <input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
+            <script>
+                function togglePasswordVisibility() {
+                    var passwordFields = document.querySelectorAll('input[type="password"]');
+                    passwordFields.forEach(field => {
+                        if (field.type === "password") {
+                            field.type = "text";
+                        } else {
+                            field.type = "password";
+                        }
+                    });
+                }
+            </script>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

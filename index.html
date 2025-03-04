@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook-like Design</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #4267B2;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .carousel {
+            background-color: #d3d3d3; /* Light gray background */
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-item {
+            min-width: 100%;
+            box-sizing: border-box;
+        }
+        .carousel-item h2 {
+            font-size: 24px;
+            margin: 0;
+        }
+        .carousel-item p {
+            font-size: 16px;
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .header .search-bar {
+            flex-grow: 1;
+            margin: 0 20px;
+        }
+        .header .search-bar input {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .header .menu {
+            display: flex;
+            gap: 15px;
+        }
+        .header .menu a {
+            color: white;
+            text-decoration: none;
+        }
+        .content {
+            display: flex;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 25%;
+            padding: 20px;
+        }
+        .main-content {
+            width: 50%;
+            padding: 20px;
+        }
+        .sidebar, .main-content {
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .post {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Facebook</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search Facebook">
+        </div>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Messages</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            <p>Links and other content</p>
+        </div>
+        <div class="main-content">
+            <div class="post">
+                <h2>Post Title</h2>
+                <p>Post content goes here...</p>
+            </div>
+            <div class="post">
+                <h2>Post Title</h2>
+                <div class="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <h2>Slide 1</h2>
+                            <p>Content for slide 1</p>
+                        </div>
+                        <div class="carousel-item">
+                            <h2>Slide 2</h2>
+                            <p>Content for slide 2</p>
+                        </div>
+                        <div class="carousel-item">
+                            <h2>Slide 3</h2>
+                            <p>Content for slide 3</p>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="prev">Prev</button>
+                        <button class="next">Next</button>
+                    </div>
+                </div>
+                <script>
+                    const carouselInner = document.querySelector('.carousel-inner');
+                    const prevButton = document.querySelector('.prev');
+                    const nextButton = document.querySelector('.next');
+                    let currentIndex = 0;
+
+                    function updateCarousel() {
+                        const width = carouselInner.clientWidth;
+                        carouselInner.style.transform = `translateX(-${currentIndex * width}px)`;
+                    }
+
+                    prevButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex > 0) ? currentIndex - 1 : carouselInner.children.length - 1;
+                        updateCarousel();
+                    });
+
+                    nextButton.addEventListener('click', () => {
+                        currentIndex = (currentIndex < carouselInner.children.length - 1) ? currentIndex + 1 : 0;
+                        updateCarousel();
+                    });
+
+                    window.addEventListener('resize', updateCarousel);
+
+                    setInterval(() => {
+                        currentIndex = (currentIndex < carouselInner.children.length - 1) ? currentIndex + 1 : 0;
+                        updateCarousel();
+                    }, 3000); // Change slide every 3 seconds
+                </script>
+                <p>Post content goes here...</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
