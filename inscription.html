@@ -60,6 +60,9 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .registration-container input.invalid {
+            border-color: red;
+        }
         .registration-container button {
             width: 100%;
             padding: 10px;
@@ -89,12 +92,12 @@
     </div>
     <div class="registration-container">
         <h2>Create a New Account</h2>
-        <form>
+        <form onsubmit="return validateForm()">
             <input type="text" placeholder="First Name" required>
             <input type="text" placeholder="Last Name" required>
             <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
-            <input type="password" placeholder="Confirm Password" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
             <input type="checkbox" onclick="togglePasswordVisibility()"> Show Password
             <script>
                 function togglePasswordVisibility() {
@@ -106,6 +109,18 @@
                             field.type = "password";
                         }
                     });
+                }
+
+                function validateForm() {
+                    var password = document.getElementById('password').value;
+                    var confirmPassword = document.getElementById('confirm-password').value;
+                    if (password !== confirmPassword) {
+                        document.getElementById('confirm-password').classList.add('invalid');
+                        return false;
+                    } else {
+                        document.getElementById('confirm-password').classList.remove('invalid');
+                        return true;
+                    }
                 }
             </script>
             <button type="submit">Sign Up</button>
